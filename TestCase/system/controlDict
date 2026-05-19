@@ -1,0 +1,139 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2406                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+libs            (atmosphericModels);
+
+//application     buoyantBoussinesqPimpleFoam;
+application     buoyantBoussinesqHumidityPimpleFoam; // https://github.com/tariqridwan/buoyantBoussinesqHumidityPimpleFoam/tree/main
+
+startFrom       latestTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         8;
+
+deltaT          0.5;
+
+writeControl    runTime;
+
+writeInterval   1;
+
+purgeWrite      0;
+
+writeFormat     ascii;
+
+writePrecision  6;
+
+writeCompression off;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable true;
+
+adjustTimeStep  yes;
+
+maxCo           0.25;
+
+maxDeltaT       0.5;
+
+functions
+{
+    /*turbulenceFields1
+    {
+        type        turbulenceFields;
+        libs        ("libfieldFunctionObjects.so");
+
+        // Either field or fields entries
+        fields                  (k); 
+        enabled                 true;
+        //executeControl          writeTime;
+        writeControl            writeTime;
+        executeControl          timeStep;
+        executeInterval         1;
+    }*/
+    
+    // #include "FOyPlus" // not using seperate FOyPlus file anymore
+    yPlus1
+    {
+        type            yPlus;
+        libs            ("libfieldFunctionObjects.so" );
+        //executeControl  writeTime;
+        //writeControl    writeTime;
+        executeControl  runTime; // default is timeStep
+        executeInterval 1; // default is 1
+        writeControl    runTime; // default is timeStep
+        writeInterval   1; // default is 1
+    }
+    
+    /*CourantNo1
+    {
+        type            CourantNo;
+        libs            ("libfieldFunctionObjects.so");
+        field           phi;
+        executeControl  writeTime;
+        writeControl    writeTime;
+        //executeControl  runTime;
+        //executeInterval 100;
+        //writeControl    runTime;
+        //writeInterval   100;
+    }*/
+    
+    /*fieldAverage1
+    {
+        type            fieldAverage;
+        libs            (fieldFunctionObjects);
+        writeControl    writeTime;
+        //writeControl    runTime;
+        //writeInterval   100;
+
+        fields
+        (
+            U
+            {
+                mean        on;
+                prime2Mean  on;
+                base        time;
+            }
+            
+            // T
+            // {
+            //    mean        on;
+            //    prime2Mean  off;
+            //    base        time;
+            // }
+            
+            turbulenceProperties:k
+            {
+                mean        on;
+                prime2Mean  off;
+                base        time;
+            }
+        );
+        
+        // Information regarding the number of averaging steps, and total averaging time are written on a per-field basis to the <functionObject name>Properties dictionary, located in <time>/uniform.
+        // restartOnRestart    true; // When restarting form a previous calculation, the averaging is continuous or may be restarted using the restartOnRestart option. Default is false.
+        restartOnOutput     true; // The averaging process may be restarted: after each calculation output time using the restartOnOutput option.  Default is false.
+        // periodicRestart     true; // The averaging process may be restarted: periodically using the periodicRestart option and setting restartPeriod to the required averaging period. Default is false.
+        // restartPeriod       5;
+    }*/
+}
+
+// ************************************************************************* //
