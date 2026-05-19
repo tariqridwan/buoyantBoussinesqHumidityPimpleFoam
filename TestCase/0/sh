@@ -44,7 +44,7 @@ internalField   #codeStream
         
         scalarField sh(mesh.nCells(), scalar(0));
         
-        // Your temperature profile data (z vs thl)
+        // Your specific humidity (kg/kg) profile data (z vs sh)
         List<Tuple2<scalar, scalar>> profileData =
         {
             {12.5, 0.009130094115766754},
