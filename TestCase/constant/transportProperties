@@ -1,0 +1,39 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2406                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      transportProperties;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+transportModel Newtonian;
+
+// Laminar viscosity
+nu              1.488e-05; // @ 290 K
+
+// Thermal expansion coefficient
+beta            3.430379e-03; // @ 291.513 K, for an ideal gas in the Boussinesq approximation, β = 1/TRef.
+betaSh          0.604;     
+
+// Reference temperature
+TRef            291.513; // rho = 1.211 kg/m3.
+shRef           0.01046;
+
+// Laminar Prandtl number
+Pr              0.7;
+Sch             0.66;
+
+// Turbulent Prandtl number
+Prt             0.7;
+Scht            0.7;
+
+// ************************************************************************* //
