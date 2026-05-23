@@ -1,8 +1,9 @@
+    // This file is unique for this solver, to consider specific humidity
 {
     //alphat = turbulence->nut()/Prt;
     //alphat.correctBoundaryConditions();
     volScalarField gammat = turbulence->nut()/Scht; // similar to alphat, here Scht is the turbulent Schmidt Number
-    //gammat.correctBoundaryConditions(); // I think this line is not needed for us as we won't use any wall function for gammat. For alphat, this line was necessary to correct the alphat only between surface and first cell-center.
+    //gammat.correctBoundaryConditions(); // not needed as wall function for gammat is not considered. For alphat, this line was necessary to correct the alphat only between surface and first cell-center, using the alphat wall function, e.g., atmAlphatkWallFunction.
 
     //volScalarField alphaEff("alphaEff", turbulence->nu()/Pr + alphat);
     volScalarField gammaEff("gammaEff", turbulence->nu()/Sch + gammat); // similar to alphaEff, here Sch is the Schmidt Number
