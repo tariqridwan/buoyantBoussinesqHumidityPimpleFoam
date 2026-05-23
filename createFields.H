@@ -14,7 +14,7 @@ volScalarField T
     mesh
 );
 
-Info<< "Reading field sh\n" << endl;
+Info<< "Reading field sh\n" << endl; // to read the specific humidity field, added for the buoyantBoussinesqHumidityPimpleFoam solver
 volScalarField sh
 (
     IOobject
@@ -74,57 +74,57 @@ IOdictionary transportProperties
 );
 
 // 2. Read standard Boussinesq properties (Required for T and rhok)
-dimensionedScalar beta
+dimensionedScalar beta // Thermal expansion coefficient
 (
     "beta",
     dimless/dimTemperature,
     transportProperties
 );
 
-dimensionedScalar TRef
+dimensionedScalar TRef // Reference potential temperature
 (
     "TRef",
     dimTemperature,
     transportProperties
 );
 
-dimensionedScalar Pr
+dimensionedScalar Pr // Laminar Prandtl number
 (
     "Pr",
     dimless,
     transportProperties
 );
 
-dimensionedScalar Prt
+dimensionedScalar Prt // Turbulent Prandtl number
 (
     "Prt",
     dimless,
     transportProperties
 );
 
-// 3. Read the new humidity properties
-dimensionedScalar Sch
+// 3. Read the new specific humidity properties
+dimensionedScalar Sch // Laminar Schmidt number
 (
     "Sch",
     dimless,
     transportProperties
 );
 
-dimensionedScalar Scht
+dimensionedScalar Scht // Turbulent Schmidt number
 (
     "Scht",
     dimless,
     transportProperties
 );
 
-dimensionedScalar betaSh
+dimensionedScalar betaSh // Mass expansion coefficient
 (
     "betaSh",
     dimless,
     transportProperties
 );
 
-dimensionedScalar shRef
+dimensionedScalar shRef // Reference specific humidity
 (
     "shRef",
     dimless,
@@ -152,7 +152,7 @@ volScalarField rhok
         mesh
     ),
     // 1.0 - beta*(T - TRef)
-    1.0 - beta*(T - TRef) - betaSh*(sh - shRef)
+    1.0 - beta*(T - TRef) - betaSh*(sh - shRef) // modified to consider density change by specific humidity "sh", for the buoyantBoussinesqHumidityPimpleFoam solver
 );
 
 // kinematic turbulent thermal thermal conductivity m2/s

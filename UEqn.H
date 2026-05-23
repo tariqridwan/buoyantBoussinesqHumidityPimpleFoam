@@ -1,4 +1,4 @@
-    // Solve the momentum equation
+    // Solve the momentum equation. This file is as it is in the buoyantBoussinesqPimpleFoam solver.
 
     MRF.correctBoundaryVelocity(U);
 

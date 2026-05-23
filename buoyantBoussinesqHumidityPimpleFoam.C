@@ -25,7 +25,7 @@ License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
 
 Application
-    buoyantBoussinesqHumidityPimpleFoam (previously: buoyantBoussinesqPimpleFoam)
+    buoyantBoussinesqHumidityPimpleFoam (previously: buoyantBoussinesqPimpleFoam in OpenFOAM)
 
 Group
     grpHeatTransferSolvers
@@ -36,7 +36,11 @@ Description
 
     Uses the Boussinesq approximation:
     \f[
-        rho_{k} = 1 - beta(T - T_{ref}) - betaSh*(sh - shRef)
+        rho_{k} = 1 - beta(T - T_{ref}) - betaSh*(sh - sh_{ref})
+    \f]
+    if specific humidity not considered, then like the buoyantBoussinesqPimpleFoam solver:
+    \f[
+        rho_{k} = 1 - beta(T - T_{ref})
     \f]
 
     where:
@@ -44,6 +48,10 @@ Description
         beta = thermal expansion coefficient [1/K]
         T = temperature [K]
         \f$ T_{ref} \f$ = reference temperature [K]
+    and additionally in the buoyantBoussinesqHumidityPimpleFoam solver:
+        betaSh = mass expansion coefficient [dimensionless]
+        sh = specific humidity [kg/kg]
+        \f$ sh_{ref} \f$ = reference specific humidity [kg/kg]
 
     Valid when:
     \f[

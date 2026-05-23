@@ -1,3 +1,4 @@
+    // This file is as it is in the buoyantBoussinesqPimpleFoam solver.
 {
     volScalarField rAU("rAU", 1.0/UEqn.A());
     surfaceScalarField rAUf("rAUf", fvc::interpolate(rAU));
