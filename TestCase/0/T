@@ -1,8 +1,8 @@
-/*---------------------------------------------------------------------------*\
+/*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  2406                                  |
-|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|  \\    /   O peration     | Version:  plus                                  |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
 FoamFile
@@ -44,7 +44,7 @@ internalField   #codeStream
         
         scalarField T(mesh.nCells(), scalar(0));
         
-        // Your temperature profile data (z vs thl)
+        // Temperature profile data (z vs thl)
         List<Tuple2<scalar, scalar>> profileData =
         {
             {12.5, 289.1929983716404},
@@ -260,8 +260,8 @@ boundaryField
         heatSource      flux;
         alphaEff        alphaEff; // coming from the solver buoyantBoussinesqPimpleFoam/TEqn.H (Line 5): volScalarField alphaEff("alphaEff", turbulence->nu()/Pr + alphat);
         // Mandatory entries (runtime modifiable)
-        Cp0             1218.266; // effectively rho * Cp = 1.211×1006 = 1218.266, as this BC doesn't consider the density in the denominator of ∇T = q/(rho*Cp*alphaEff). The 1006 J/(kg·K) of air @ 290 K
-        value           uniform 291.513; // t_sfc=290 in [radiation] in clear_sky.ini file
+        Cp0             1227.32; // effectively rho * Cp = 1.22×1006 = 1227.32, as this BC doesn't directly consider the density in the denominator of ∇T = q/(rho*Cp*alphaEff).
+        value           uniform 289.232; // surface temperature at IC, interpolated from 0/T: {12.5, 289.1929983716404},{37.5, 289.11455942665737}
         q               csvFile; // for Cabauw heat flux for 12 hours
         nHeaderLine     1;
         refColumn       0;
@@ -272,7 +272,7 @@ boundaryField
     }
     cblTop
     {
-        type            zeroGradient;  //
+        type            zeroGradient;  // stop[thl]=0 in [boundary] in clear_sky.ini file
     }
     
     // LEFT-RIGHT SIDES:

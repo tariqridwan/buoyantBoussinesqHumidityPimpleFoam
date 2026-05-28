@@ -28,7 +28,7 @@ boundaryField
         kappa           0.41;
         Pr              0.7;
         // z0              uniform 0.0002; // Calm open sea
-        z0              uniform 0.003; // Cabauw: z0h=0.003 in [boundary] in clear_sky.ini file
+        z0              uniform 0.003; // z0h=0.003 in [boundary] in clear_sky.ini file
         // z0              uniform 0.03; // Open flat terrain, grass
         // z0              uniform 0.25; // High crops, many trees
         // z0              uniform 1.0; // Suburb, forest

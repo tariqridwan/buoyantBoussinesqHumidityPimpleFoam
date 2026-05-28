@@ -65,7 +65,7 @@ boundary
         );
     }
     
-    cblTop // Top Surface (z = 3000)
+    cblTop // Top Surface (z = H)
     {
         type wall;
         faces
@@ -85,7 +85,7 @@ boundary
         );
     }
 
-    cblRight // Eastern face (x = 3000)
+    cblRight // Eastern face (x = L)
     {
         type cyclic;
         neighbourPatch cblLeft;
@@ -106,7 +106,7 @@ boundary
         );
     }
 
-    cblBack // Northern face (y = 6400)
+    cblBack // Northern face (y = W)
     {
         type cyclic;
         neighbourPatch cblFront;

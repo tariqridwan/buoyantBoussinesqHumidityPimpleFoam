@@ -1,8 +1,8 @@
-/*---------------------------------------------------------------------------*\
+/*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  2406                                  |
-|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|  \\    /   O peration     | Version:  plus                                  |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
 FoamFile
@@ -44,7 +44,7 @@ internalField   #codeStream
         
         scalarField sh(mesh.nCells(), scalar(0));
         
-        // Your specific humidity (kg/kg) profile data (z vs sh)
+        // Specific humidity (kg/kg) profile data (z vs sh)
         List<Tuple2<scalar, scalar>> profileData =
         {
             {12.5, 0.009130094115766754},
@@ -255,12 +255,22 @@ boundaryField
 {
     earth
     {
-        type            fixedValue;
-        value           uniform 0.01350688; // chose 9 AM Cabauw surface specific humidity (kg/kg)
+        type            atmTurbulentMoistureFluxHumidity;
+        MoistureSource  flux;
+        gammaEff        gammaEff; // coming from the solver buoyantBoussinesqHumidityPimpleFoam/shEqn.H (Line 8): volScalarField gammaEff("gammaEff", turbulence->nu()/Sch + gammat);
+        Lv0             1; // effectively rho * Lv in ∇sh = HumidityFlux/(rho*Lv*gammaEff). As HumidityFlux is already in in kg/kg·m/s unit (not in W/m²), so Lv0 = 1.
+        value           uniform 0.009190666329739507; // surface specific humidity at IC, interpolated from 0/sh: {12.5, 0.009130094115766754},{37.5, 0.009008949687821247}
+        HumidityFlux    csvFile; // in kg/kg·m/s unit, humidity flux for 12 hours, from 0s to 43100s
+        nHeaderLine     1;
+        refColumn       0;
+        componentColumns ( 1 );
+        separator       ",";
+        mergeSeparators no;
+        file            "<constant>/qt_sbot_in_clear_sky_input.csv";
     }
     cblTop
     {
-        type            zeroGradient;
+        type            zeroGradient;  // stop[qt]=0 in [boundary] in clear_sky.ini file
     }
     
     // LEFT-RIGHT SIDES:
