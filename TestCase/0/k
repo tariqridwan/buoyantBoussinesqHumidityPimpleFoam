@@ -1,15 +1,14 @@
-/*---------------------------------------------------------------------------*\
+/*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  2406                                  |
-|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|  \\    /   O peration     | Version:  plus                                  |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
 FoamFile
 {
     version     2.0;
     format      ascii;
-    arch        "LSB;label=32;scalar=64";
     class       volScalarField;
     location    "0";
     object      k;
@@ -18,19 +17,21 @@ FoamFile
 
 dimensions      [0 2 -2 0 0 0 0];
 
-internalField   uniform 0.2;
+internalField   uniform  0.2;
 
 boundaryField
 {
     earth
     {
         type            kqRWallFunction;
-        value           uniform 0.2;
+        value           $internalField;
     }
     cblTop
     {
         type            slip;
     }
+    
+    // LEFT-RIGHT SIDES:
     cblLeft
     {
         type            cyclic;
@@ -39,10 +40,13 @@ boundaryField
     {
         type            cyclic;
     }
+    
+    // FRONT-BACK SIDES if 3D:
     cblFront
     {
         type            cyclic;
     }
+
     cblBack
     {
         type            cyclic;

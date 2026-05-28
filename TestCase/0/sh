@@ -260,7 +260,7 @@ boundaryField
     }
     cblTop
     {
-        type            zeroGradient;  // stop[qt]=0 in [boundary] in clear_sky.ini file, use only if domain height is more than 3 km. Cabauw used 4 km, buffer layer starts from 3 km.
+        type            zeroGradient;
     }
     
     // LEFT-RIGHT SIDES:

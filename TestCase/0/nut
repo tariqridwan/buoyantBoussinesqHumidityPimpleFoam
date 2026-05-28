@@ -1,15 +1,14 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  2406                                  |
-|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|  \\    /   O peration     | Version:  plus                                  |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
 FoamFile
 {
     version     2.0;
     format      ascii;
-    arch        "LSB;label=32;scalar=64";
     class       volScalarField;
     location    "0";
     object      nut;
@@ -24,15 +23,24 @@ boundaryField
 {
     earth
     {
-        type            atmNutkWallFunction;
-        z0              constant 0.075;
-        value           uniform 0;
+        type            atmNutkWallFunction; // WMLES
+        kappa           0.41;
+        Cmu             0.09;
+        // z0              uniform 0.0002; // Calm open sea
+        // z0              uniform 0.03; // Open flat terrain, grass
+        z0              uniform 0.075; // Cabauw: z0m=0.075
+        // z0              uniform 0.25; // High crops, many trees
+        // z0              uniform 1.0; // Suburb, forest
+        // z0              uniform 2.0; // City centre with high‐ and low‐rise buildings, very hilly or moderate mountainous area.
+        value           uniform 0.0;
     }
-    cblTop
+	cblTop
     {
         type            calculated;
         value           uniform 0;
     }
+    
+    // LEFT-RIGHT SIDES:
     cblLeft
     {
         type            cyclic;
@@ -41,10 +49,13 @@ boundaryField
     {
         type            cyclic;
     }
+    
+    // FRONT-BACK SIDES if 3D:
     cblFront
     {
         type            cyclic;
     }
+
     cblBack
     {
         type            cyclic;
