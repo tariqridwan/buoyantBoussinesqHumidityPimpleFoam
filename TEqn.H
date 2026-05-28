@@ -25,5 +25,5 @@
     fvOptions.correct(T);
 
     //rhok = 1.0 - beta*(T - TRef);
-    rhok = 1.0 - beta*(T - TRef) - betaSh*(sh - shRef); // modified to consider density change by specific humidity "sh", for the buoyantBoussinesqHumidityPimpleFoam solver
+    rhok = 1.0 - beta*(T - TRef) - betaSh*(sh - shRef); // modified to consider density change by specific humidity "sh", for the buoyantBoussinesqHumidityPimpleFoam solver, used in the last part of Equation (21) in the doc file. Equation (20) is yet to be tested.
 }
