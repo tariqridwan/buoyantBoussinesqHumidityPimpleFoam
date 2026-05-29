@@ -255,18 +255,8 @@ boundaryField
 {
     earth
     {
-        type            atmTurbulentMoistureFluxHumidity;
-        MoistureSource  flux;
-        gammaEff        gammaEff; // coming from the solver buoyantBoussinesqHumidityPimpleFoam/shEqn.H (Line 8): volScalarField gammaEff("gammaEff", turbulence->nu()/Sch + gammat);
-        Lv0             1; // effectively rho * Lv in ∇sh = HumidityFlux/(rho*Lv*gammaEff). As HumidityFlux is already in in kg/kg·m/s unit (not in W/m²), so Lv0 = 1.
-        value           uniform 0.009190666329739507; // surface specific humidity at IC, interpolated from 0/sh: {12.5, 0.009130094115766754},{37.5, 0.009008949687821247}
-        HumidityFlux    csvFile; // in kg/kg·m/s unit, humidity flux for 12 hours, from 0s to 43100s
-        nHeaderLine     1;
-        refColumn       0;
-        componentColumns ( 1 );
-        separator       ",";
-        mergeSeparators no;
-        file            "<constant>/qt_sbot_in_clear_sky_input.csv";
+        type            fixedValue;
+        value           uniform 0.01350688; // chose 9 AM Cabauw surface specific humidity (kg/kg)
     }
     cblTop
     {
