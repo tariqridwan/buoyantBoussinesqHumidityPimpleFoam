@@ -1,0 +1,77 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2406                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    arch        "LSB;label=32;scalar=64";
+    class       polyBoundaryMesh;
+    location    "constant/polyMesh";
+    object      boundary;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+6
+(
+    earth
+    {
+        type            wall;
+        inGroups        1(wall);
+        nFaces          300;
+        startFace       16900;
+    }
+    cblTop
+    {
+        type            wall;
+        inGroups        1(wall);
+        nFaces          300;
+        startFace       17200;
+    }
+    cblLeft
+    {
+        type            cyclic;
+        inGroups        1(cyclic);
+        nFaces          200;
+        startFace       17500;
+        matchTolerance  0.0001;
+        transform       unknown;
+        neighbourPatch  cblRight;
+    }
+    cblRight
+    {
+        type            cyclic;
+        inGroups        1(cyclic);
+        nFaces          200;
+        startFace       17700;
+        matchTolerance  0.0001;
+        transform       unknown;
+        neighbourPatch  cblLeft;
+    }
+    cblFront
+    {
+        type            cyclic;
+        inGroups        1(cyclic);
+        nFaces          600;
+        startFace       17900;
+        matchTolerance  0.0001;
+        transform       unknown;
+        neighbourPatch  cblBack;
+    }
+    cblBack
+    {
+        type            cyclic;
+        inGroups        1(cyclic);
+        nFaces          600;
+        startFace       18500;
+        matchTolerance  0.0001;
+        transform       unknown;
+        neighbourPatch  cblFront;
+    }
+)
+
+// ************************************************************************* //

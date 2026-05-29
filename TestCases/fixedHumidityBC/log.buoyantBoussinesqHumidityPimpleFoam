@@ -8,9 +8,9 @@
 Build  : _9bfe8264-20241212 OPENFOAM=2406 patch=241212 version=2406
 Arch   : "LSB;label=32;scalar=64"
 Exec   : buoyantBoussinesqHumidityPimpleFoam
-Date   : May 29 2026
-Time   : 20:44:42
-Host   : tariq-pc
+Date   : XXXXXXXXXXXX
+Time   : XXXXXXXXXXXX
+Host   : XXXXXXXXXXXX
 PID    : 9465
 I/O    : uncollated
 Case   : /home/tariq/Downloads/Test112L-SMG_Xq

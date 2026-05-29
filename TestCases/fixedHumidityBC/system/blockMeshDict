@@ -1,0 +1,121 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2406                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+L       3000;  // Length: streamwise direction. Cabauw Length / 2
+W       1000;  // Width: spanwise direction. Cabauw Width / 2
+H       2000;  // Height of top box: vertical direction. Increased for Cabauw test
+
+Xc      30;  // Number of cells/grid-points in L
+Yc      10;  // Number of cells/grid-points in W
+Zc      20;  // Number of cells/grid-points in H
+
+Xr      1;  // Ratio of length, Last/First cell in L (Xc)
+Yr      1;  // Ratio of length, Last/First cell in W (Yc)
+Zr      1;  // Ratio of length, Last/First cell in H (Zc)
+
+// details of the GRID:
+// (150 * 50 * 100 = 750 k :: 3000 * 1000 * 2000 m)
+    // hex (0 1 3 2 4 5 7 6) (150 50 100) simpleGrading (1 1 1) // 20, 20, 1
+
+scale   1; // in meter
+
+vertices
+(
+    (0 0 0)    // 0 (0,0,0)
+    ($L 0 0)   // 1 (6400,0,0)
+    ($L $W 0)  // 2 (6400,6400,0)
+    (0 $W 0)   // 3 (0,6400,0)
+    (0 0 $H)   // 4 (0,0,3000)
+    ($L 0 $H)  // 5 (6400,0,3000)
+    ($L $W $H) // 6 (6400,6400,3000)
+    (0 $W $H)  // 7 (0,6400,3000)
+);
+
+blocks
+(
+    hex (0 1 2 3 4 5 6 7) ($Xc $Yc $Zc) simpleGrading ($Xr $Yr $Zr)
+);
+
+edges
+(
+);
+
+boundary
+(
+    // BOTTOM-TOP SIDES (z-axis, vertical direction):
+    earth // Bottom Surface (z = 0)
+    {
+        type wall;
+        faces
+        (
+            (0 3 2 1)
+        );
+    }
+    
+    cblTop // Top Surface (z = H)
+    {
+        type wall;
+        faces
+        (
+            (4 5 6 7)
+        );
+    }
+    
+    // LEFT-RIGHT (West/East) SIDES (x-axis, streamwise direction):
+    cblLeft // Western face (x = 0)
+    {
+        type cyclic;
+        neighbourPatch cblRight;
+        faces
+        (
+            (0 4 7 3)
+        );
+    }
+
+    cblRight // Eastern face (x = L)
+    {
+        type cyclic;
+        neighbourPatch cblLeft;
+        faces
+        (
+            (1 2 6 5)
+        );
+    }
+    
+    // FRONT-BACK (South/North) SIDES (y-axis, spanwise direction):
+    cblFront // Southern face (y = 0)
+    {
+        type cyclic;
+        neighbourPatch cblBack;
+        faces
+        (
+            (0 1 5 4)
+        );
+    }
+
+    cblBack // Northern face (y = W)
+    {
+        type cyclic;
+        neighbourPatch cblFront;
+        faces
+        (
+            (3 7 6 2)
+        );
+    }
+);
+
+
+// ************************************************************************* //
