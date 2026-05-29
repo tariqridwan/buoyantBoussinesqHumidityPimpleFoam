@@ -57,7 +57,7 @@ maxDeltaT       0.5;
 libs
 (
     "libMyAtmosphericModels.so"
-);
+); // for atmTurbulentMoistureFluxHumidity BC in 0/sh, check at https://github.com/tariqridwan/buoyantBoussinesqHumidityPimpleFoam/
 
 functions
 {
