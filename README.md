@@ -1,3 +1,2 @@
 # buoyantBoussinesqHumidityPimpleFoam
-Transient solver in OpenFOAM to solve specific humidity for buoyant, turbulent flow of incompressible fluids.
-And atmTurbulentMoistureFluxHumidity: a Moisture Flux boundary condition.
+A transient OpenFOAM solver for specific humidity transport in buoyant, turbulent, incompressible flows using the Boussinesq approximation. Accompanied by a Moisture Flux boundary condition: atmTurbulentMoistureFluxHumidity.
