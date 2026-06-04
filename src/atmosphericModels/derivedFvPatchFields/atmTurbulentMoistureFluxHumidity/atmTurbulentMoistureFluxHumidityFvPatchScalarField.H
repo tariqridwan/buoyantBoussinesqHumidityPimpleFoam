@@ -35,7 +35,7 @@ class atmTurbulentMoistureFluxHumidityFvPatchScalarField
         //- Effective latent heat scaling factor (rho * Lv)
         scalar Lv0_;
 
-        //- Humidity flux [kg/kg . m/s] or [kg/m2/s]
+        //- Humidity flux [kg/kg·m/s] or [W/m2] or [kg/m2/s]
         autoPtr<PatchFunction1<scalar>> HumidityFlux_;
 
 
