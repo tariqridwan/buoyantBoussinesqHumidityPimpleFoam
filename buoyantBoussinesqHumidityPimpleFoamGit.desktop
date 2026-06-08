@@ -1,0 +1,6 @@
+[Desktop Entry]
+Version=1.0
+Name=Visit the github repository of buoyantBoussinesqHumidityPimpleFoam OpenFOAM solver and atmTurbulentMoistureFluxHumidity boundary condition
+Type=Link
+URL=https://github.com/tariqridwan/buoyantBoussinesqHumidityPimpleFoam.git
+Icon=text-html
