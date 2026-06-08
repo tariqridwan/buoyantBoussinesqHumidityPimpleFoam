@@ -26,7 +26,8 @@ betaSh          0.60782;
 
 // Reference potential temperature (K) & specific humidity (kg/kg)
 TRef            289.232; // surface temperature at IC, interpolated from 0/T: {12.5, 289.1929983716404},{37.5, 289.11455942665737}
-shRef           0.009190666329739507; // surface specific humidity at IC, interpolated from 0/sh: {12.5, 0.009130094115766754},{37.5, 0.009008949687821247},
+shRef           0.009190666329739507; // surface specific humidity at IC, interpolated from 0/sh: {12.5, 0.009130094115766754},{37.5, 0.009008949687821247}
+
 // Laminar Prandtl & Schmidt number
 Pr              0.7;
 Sch             0.66;
