@@ -1,8 +1,8 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  plus                                  |
-|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|  \\    /   O peration     | Version:  2506                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
 FoamFile
@@ -255,14 +255,12 @@ boundaryField
 {
     earth
     {
-        // Mandatory entries (unmodifiable) // ATM-surface-flux BC
         type            atmTurbulentHeatFluxTemperature;
         heatSource      flux;
         alphaEff        alphaEff; // coming from the solver buoyantBoussinesqPimpleFoam/TEqn.H (Line 5): volScalarField alphaEff("alphaEff", turbulence->nu()/Pr + alphat);
-        // Mandatory entries (runtime modifiable)
         Cp0             1227.32; // effectively rho * Cp = 1.22×1006 = 1227.32, as this BC doesn't directly consider the density in the denominator of ∇T = q/(rho*Cp*alphaEff).
         value           uniform 289.232; // surface temperature at IC, interpolated from 0/T: {12.5, 289.1929983716404},{37.5, 289.11455942665737}
-        q               csvFile; // in K·m/s unit, heat flux for 12 hours, from 0s to 43100s
+        q               csvFile; // heat flux for 12 hours in K·m/s unit, from 0s to 43100s.
         nHeaderLine     1;
         refColumn       0;
         componentColumns ( 1 );
@@ -272,7 +270,7 @@ boundaryField
     }
     cblTop
     {
-        type            zeroGradient;  // stop[thl]=0 in [boundary] in clear_sky.ini file
+        type            zeroGradient;
     }
     
     // LEFT-RIGHT SIDES:
@@ -285,7 +283,7 @@ boundaryField
         type            cyclic;
     }
     
-    // FRONT-BACK SIDES if 3D:
+    // FRONT-BACK SIDES:
     cblFront
     {
         type            cyclic;

@@ -1,8 +1,8 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  plus                                  |
-|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|  \\    /   O peration     | Version:  2506                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
 FoamFile
@@ -17,7 +17,7 @@ FoamFile
 
 dimensions      [0 2 -2 0 0 0 0];
 
-internalField   uniform  0.2; // based on the z0m=0.075 in [boundary] in clear_sky.ini file, with considering initial u, v profiles from 0/U.
+internalField   uniform  0.2; // considering initial u, v profiles from 0/U.
 
 boundaryField
 {
@@ -41,7 +41,7 @@ boundaryField
         type            cyclic;
     }
     
-    // FRONT-BACK SIDES if 3D:
+    // FRONT-BACK SIDES:
     cblFront
     {
         type            cyclic;

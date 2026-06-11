@@ -1,8 +1,8 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  plus                                  |
-|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|  \\    /   O peration     | Version:  2506                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
 FoamFile
@@ -255,21 +255,22 @@ boundaryField
 {
     earth
     {
-        type            atmTurbulentMoistureFluxHumidity;
+        type            atmTurbulentMoistureFluxHumidity; // surface moisture flux
         MoistureSource  flux;
         gammaEff        gammaEff; // coming from the solver buoyantBoussinesqHumidityPimpleFoam/shEqn.H (Line 8): volScalarField gammaEff("gammaEff", turbulence->nu()/Sch + gammat);
         value           uniform 0.009190666329739507; // surface specific humidity at IC, interpolated from 0/sh: {12.5, 0.009130094115766754},{37.5, 0.009008949687821247}
-        HumidityFlux    csvFile; // in kg/kg·m/s unit, humidity flux for 12 hours, from 0s to 43100s
+        HumidityFlux    csvFile; // Kinematic moisture flux in kg/kg·m/s unit for 12 hours, from 0s to 43100s.
         nHeaderLine     1;
         refColumn       0;
         componentColumns ( 1 );
         separator       ",";
         mergeSeparators no;
         file            "<constant>/qt_sbot_in_clear_sky_input.csv";
+        // HumidityFlux    1.4435E-04; // If Kinematic moisture flux (kg/kg·m/s) is a fixed value.
     }
     cblTop
     {
-        type            zeroGradient;  // stop[qt]=0 in [boundary] in clear_sky.ini file
+        type            zeroGradient;
     }
     
     // LEFT-RIGHT SIDES:
@@ -282,7 +283,7 @@ boundaryField
         type            cyclic;
     }
     
-    // FRONT-BACK SIDES if 3D:
+    // FRONT-BACK SIDES:
     cblFront
     {
         type            cyclic;

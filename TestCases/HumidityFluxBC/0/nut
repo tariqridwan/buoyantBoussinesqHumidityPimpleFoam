@@ -1,8 +1,8 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  plus                                  |
-|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|  \\    /   O peration     | Version:  2506                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
 FoamFile
@@ -23,12 +23,12 @@ boundaryField
 {
     earth
     {
-        type            atmNutkWallFunction; // WMLES
+        type            atmNutkWallFunction;
         kappa           0.41;
         Cmu             0.09;
         // z0              uniform 0.0002; // Calm open sea
         // z0              uniform 0.03; // Open flat terrain, grass
-        z0              uniform 0.075; // z0m=0.075 in [boundary] in clear_sky.ini file
+        z0              uniform 0.075; // for Cabauw
         // z0              uniform 0.25; // High crops, many trees
         // z0              uniform 1.0; // Suburb, forest
         // z0              uniform 2.0; // City centre with high‐ and low‐rise buildings, very hilly or moderate mountainous area.
@@ -50,7 +50,7 @@ boundaryField
         type            cyclic;
     }
     
-    // FRONT-BACK SIDES if 3D:
+    // FRONT-BACK SIDES:
     cblFront
     {
         type            cyclic;

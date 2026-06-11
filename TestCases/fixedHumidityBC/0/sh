@@ -1,8 +1,8 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  plus                                  |
-|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|  \\    /   O peration     | Version:  2506                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
 FoamFile
@@ -256,11 +256,11 @@ boundaryField
     earth
     {
         type            fixedValue;
-        value           uniform 0.01350688; // chose 9 AM Cabauw surface specific humidity (kg/kg)
+        value           uniform 0.01350688; // surface specific humidity (kg/kg)
     }
     cblTop
     {
-        type            zeroGradient;  // stop[qt]=0 in [boundary] in clear_sky.ini file
+        type            zeroGradient;
     }
     
     // LEFT-RIGHT SIDES:
@@ -273,7 +273,7 @@ boundaryField
         type            cyclic;
     }
     
-    // FRONT-BACK SIDES if 3D:
+    // FRONT-BACK SIDES:
     cblFront
     {
         type            cyclic;
