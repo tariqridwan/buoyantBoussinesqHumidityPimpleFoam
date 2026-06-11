@@ -1,7 +1,7 @@
-/*---------------------------------------------------------------------------*\
+/*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  2406                                  |
+|  \\    /   O peration     | Version:  2506                                  |
 |   \\  /    A nd           | Website:  www.openfoam.com                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -18,7 +18,7 @@ FoamFile
 libs            (atmosphericModels);
 
 //application     buoyantBoussinesqPimpleFoam;
-application     buoyantBoussinesqHumidityPimpleFoam; // https://github.com/tariqridwan/buoyantBoussinesqHumidityPimpleFoam/
+application     buoyantBoussinesqHumidityPimpleFoam; // github.com/tariqridwan/buoyantBoussinesqHumidityPimpleFoam/
 
 startFrom       latestTime;
 
@@ -57,7 +57,7 @@ maxDeltaT       0.5;
 libs
 (
     "libMyAtmosphericModels.so"
-); // for atmTurbulentMoistureFluxHumidity BC in 0/sh, check at https://github.com/tariqridwan/buoyantBoussinesqHumidityPimpleFoam/
+); // for atmTurbulentMoistureFluxHumidity BC in 0/sh, check at github.com/tariqridwan/buoyantBoussinesqHumidityPimpleFoam/
 
 functions
 {
@@ -75,7 +75,6 @@ functions
         executeInterval         1;
     }*/
     
-    // #include "FOyPlus" // not using seperate FOyPlus file anymore
     yPlus1
     {
         type            yPlus;

@@ -1,7 +1,7 @@
-/*---------------------------------------------------------------------------*\
+/*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  2406                                  |
+|  \\    /   O peration     | Version:  2506                                  |
 |   \\  /    A nd           | Website:  www.openfoam.com                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -22,15 +22,15 @@ nu              1.471e-05; // rho = 1.22 kg/m3 @ TRef.
 
 // Thermal & mass expansion coefficient
 beta            3.457432e-03; // @ TRef, for an ideal gas in the Boussinesq approximation, β = 1/TRef.
-betaSh          0.60782;     
+betaSh          0.60782;      // Limane et al. (2018), DOI: 10.1016/j.enbuild.2018.02.037.
 
 // Reference potential temperature (K) & specific humidity (kg/kg)
-TRef            289.232; // surface temperature at IC, interpolated from 0/T: {12.5, 289.1929983716404},{37.5, 289.11455942665737}
-shRef           0.009190666329739507; // surface specific humidity at IC, interpolated from 0/sh: {12.5, 0.009130094115766754},{37.5, 0.009008949687821247}
+TRef            289.232; // surface temperature at IC, interpolated from 0/T: {12.5, 289.1929983716404},{37.5, 289.11455942665737}.
+shRef           0.009190666329739507; // surface specific humidity at IC, interpolated from 0/sh: {12.5, 0.009130094115766754},{37.5, 0.009008949687821247}.
 
 // Laminar Prandtl & Schmidt number
-Pr              0.7;
-Sch             0.66;
+Pr              0.7;    // en.wikipedia.org/wiki/Prandtl_number
+Sch             0.66;   // en.wikipedia.org/wiki/Schmidt_number
 
 // Turbulent Prandtl & Schmidt number
 Prt             0.7;
