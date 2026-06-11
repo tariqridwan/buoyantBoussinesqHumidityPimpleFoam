@@ -1,5 +1,8 @@
-# buoyantBoussinesqHumidityPimpleFoam
-A transient OpenFOAM solver for specific humidity transport in buoyant, turbulent, incompressible flows using the Boussinesq approximation. Accompanied by a Moisture Flux boundary condition: atmTurbulentMoistureFluxHumidity.
+# `buoyantBoussinesqHumidityPimpleFoam`
+A transient OpenFOAM solver for specific humidity transport in buoyant, turbulent, incompressible flows using the Boussinesq approximation. Accompanied by a Moisture Flux boundary condition: `atmTurbulentMoistureFluxHumidity`.
+
+## Documentation
+Doc [➚](https://github.com/tariqridwan/buoyantBoussinesqHumidityPimpleFoam/blob/main/doc/Solver_BC_equations.pdf)
 
 ## Compatibility
 The solver and boundary condition are tested and verified on OpenFOAM.com `v2312`, `v2406`, and `v2506`. Not tested in OpenFOAM.org `vXX` versions.
