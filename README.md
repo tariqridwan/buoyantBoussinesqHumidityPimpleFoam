@@ -1,5 +1,6 @@
 # buoyantBoussinesqHumidityPimpleFoam ✎
-A transient `OpenFOAM` solver for specific humidity transport in buoyant 🍃, turbulent 🌪, incompressible flows 💨 using the Boussinesq approximation. Accompanied by a moisture flux boundary 🚧 condition: `atmTurbulentMoistureFluxHumidity`.
+A transient `OpenFOAM` solver for specific humidity transport in buoyant 🍃, turbulent 🌪, incompressible flows 💨 using the Boussinesq approximation.<br />
+Accompanied by a moisture flux boundary 🚧 condition: `atmTurbulentMoistureFluxHumidity`.
 
 ## Documentation 📜
 Read the doc [➚](https://github.com/tariqridwan/buoyantBoussinesqHumidityPimpleFoam/blob/main/doc/Solver_BC_equations.pdf).
