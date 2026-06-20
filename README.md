@@ -6,7 +6,7 @@ Accompanied by a moisture flux boundary 🚧 condition: `atmTurbulentMoistureFlu
 Read the doc [➚](https://github.com/tariqridwan/buoyantBoussinesqHumidityPimpleFoam/blob/main/doc/Solver_BC_equations.pdf).
 
 ## Compatibility 🧩
-The solver and boundary condition are tested 🛠️ and verified on the ESI (.com) versions: `v2312`, `v2406`, and `v2506`.<br />
+The solver and boundary condition are tested 🛠️ and verified on the ESI (.com) versions: `v2312`, `v2406`, `v2506` and `v2512`.<br />
 Not tested in the Foundation (.org) `vXX` versions.
 
 ## Funding 💶
