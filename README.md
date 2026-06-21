@@ -1,3 +1,4 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20789157.svg)](https://doi.org/10.5281/zenodo.20789157)
 # buoyantBoussinesqHumidityPimpleFoam ✎
 A transient `OpenFOAM` solver with specific humidity transport for buoyant 🍃, turbulent flow 🌪 of incompressible fluids based on the Boussinesq approximation.<br />
 Accompanied by a moisture flux boundary 🚧 condition: `atmTurbulentMoistureFluxHumidity`.
