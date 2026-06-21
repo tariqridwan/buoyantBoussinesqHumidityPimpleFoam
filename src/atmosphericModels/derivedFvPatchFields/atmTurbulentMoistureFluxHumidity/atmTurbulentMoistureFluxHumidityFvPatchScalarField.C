@@ -1,11 +1,25 @@
 /*---------------------------------------------------------------------------*\
-  =========                 |
-  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
-   \\    /   O peration     |
-    \\  /    A nd           | www.openfoam.com
-     \\/     M anipulation  |
+atmTurbulentMoistureFluxHumidity: Implementation of a moisture flux
+                                  boundary condition in OpenFOAM.
 -------------------------------------------------------------------------------
-    Copyright (C) 2024 OpenFOAM Foundation
+    Copyright (C) 2026 Tariq Ridwan
+-------------------------------------------------------------------------------
+License
+    This file is part of buoyantBoussinesqHumidityPimpleFoam.
+
+    buoyantBoussinesqHumidityPimpleFoam is free software: you can redistribute
+    it and/or modify it under the terms of the GNU General Public License as
+    published by the Free Software Foundation, either version 3 of the License,
+    or (at your option) any later version.
+
+    buoyantBoussinesqHumidityPimpleFoam is distributed in the hope that it will
+    be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General
+    Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with OpenFOAM. If not, see <http://www.gnu.org/licenses/>.
+    
 \*---------------------------------------------------------------------------*/
 
 #include "atmTurbulentMoistureFluxHumidityFvPatchScalarField.H"
@@ -25,7 +39,7 @@ atmTurbulentMoistureFluxHumidityFvPatchScalarField
     fixedGradientFvPatchScalarField(p, iF),
     gammaEffName_("undefinedGammaEff"),
     Lv0_(1.0),
-    HumidityFlux_(nullptr)
+    MoistureFlux_(nullptr)
 {}
 
 
@@ -40,9 +54,9 @@ atmTurbulentMoistureFluxHumidityFvPatchScalarField
     fixedGradientFvPatchScalarField(p, iF), // Bypass dict constructor to handle startup safely
     gammaEffName_(dict.get<word>("gammaEff")),
     Lv0_(dict.getOrDefault<scalar>("Lv0", 1.0)),
-    HumidityFlux_(PatchFunction1<scalar>::New(p.patch(), "HumidityFlux", dict))
+    MoistureFlux_(PatchFunction1<scalar>::New(p.patch(), "MoistureFlux", dict))
 {
-    // Ensures the user supplied 'flux' mode if they included the keyword
+    // Ensure the user supplied 'flux' mode if they included the keyword
     if (dict.found("MoistureSource"))
     {
         word sourceMode = dict.get<word>("MoistureSource");
@@ -75,7 +89,7 @@ atmTurbulentMoistureFluxHumidityFvPatchScalarField
     fixedGradientFvPatchScalarField(ptf, p, iF, mapper),
     gammaEffName_(ptf.gammaEffName_),
     Lv0_(ptf.Lv0_),
-    HumidityFlux_(ptf.HumidityFlux_->clone(p.patch()).ptr())
+    MoistureFlux_(ptf.MoistureFlux_->clone(p.patch()).ptr())
 {}
 
 
@@ -88,7 +102,7 @@ atmTurbulentMoistureFluxHumidityFvPatchScalarField
     fixedGradientFvPatchScalarField(ptf),
     gammaEffName_(ptf.gammaEffName_),
     Lv0_(ptf.Lv0_),
-    HumidityFlux_(ptf.HumidityFlux_->clone(this->patch().patch()).ptr())
+    MoistureFlux_(ptf.MoistureFlux_->clone(this->patch().patch()).ptr())
 {}
 
 
@@ -102,7 +116,7 @@ atmTurbulentMoistureFluxHumidityFvPatchScalarField
     fixedGradientFvPatchScalarField(ptf, iF),
     gammaEffName_(ptf.gammaEffName_),
     Lv0_(ptf.Lv0_),
-    HumidityFlux_(ptf.HumidityFlux_->clone(this->patch().patch()).ptr())
+    MoistureFlux_(ptf.MoistureFlux_->clone(this->patch().patch()).ptr())
 {}
 
 
@@ -114,9 +128,9 @@ void Foam::atmTurbulentMoistureFluxHumidityFvPatchScalarField::autoMap
 )
 {
     fixedGradientFvPatchScalarField::autoMap(m);
-    if (HumidityFlux_)
+    if (MoistureFlux_)
     {
-        HumidityFlux_->autoMap(m);
+        MoistureFlux_->autoMap(m);
     }
 }
 
@@ -132,9 +146,9 @@ void Foam::atmTurbulentMoistureFluxHumidityFvPatchScalarField::rmap
     const auto& tiptf =
         refCast<const atmTurbulentMoistureFluxHumidityFvPatchScalarField>(ptf);
 
-    if (HumidityFlux_)
+    if (MoistureFlux_)
     {
-        HumidityFlux_->rmap(tiptf.HumidityFlux_(), addr);
+        MoistureFlux_->rmap(tiptf.MoistureFlux_(), addr);
     }
 }
 
@@ -154,9 +168,9 @@ void Foam::atmTurbulentMoistureFluxHumidityFvPatchScalarField::updateCoeffs()
     const scalar t = this->db().time().timeOutputValue();
     
     // Evaluate current flux value (e.g. reading from CSV row)
-    scalarField HumFlux(HumidityFlux_->value(t));
+    scalarField HumFlux(MoistureFlux_->value(t));
 
-    // Compute the boundary gradient: ∇sh = HumidityFlux / (Lv0 * gammaEff)
+    // Compute the boundary gradient: ∇sh = MoistureFlux / (Lv0 * gammaEff)
     gradient() = HumFlux / (Lv0_*gammaEffp + SMALL);
 
     fixedGradientFvPatchScalarField::updateCoeffs();
@@ -174,9 +188,9 @@ void Foam::atmTurbulentMoistureFluxHumidityFvPatchScalarField::write
     os.writeEntry("gammaEff", gammaEffName_);
     os.writeEntry("Lv0", Lv0_);
 
-    if (HumidityFlux_)
+    if (MoistureFlux_)
     {
-        HumidityFlux_->writeData(os);
+        MoistureFlux_->writeData(os);
     }
 }
 

@@ -13,7 +13,7 @@ Time   : XXXXXXXXXXXX
 Host   : XXXXXXXXXXXX
 PID    : 9465
 I/O    : uncollated
-Case   : /home/tariq/Downloads/Test112L-SMG_Xq
+Case   : /home/user/Downloads/Test112L-SMG_Xq
 nProcs : 1
 trapFpe: Floating point exception trapping enabled (FOAM_SIGFPE).
 fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 5, maxFileModificationPolls 20)
@@ -36,44 +36,44 @@ Reading thermophysical properties
 Reading field T
 
 Using #codeStream at line 20 in file "0/T"
-Using #codeStream with "/home/tariq/Downloads/Test112L-SMG_Xq/dynamicCode/platforms/linux64GccDPInt32Opt/lib/libcodeStream_aaf28b22cd9f015470c3e7861de51a9679c16c3e.so"
-Could not load "/home/tariq/Downloads/Test112L-SMG_Xq/dynamicCode/platforms/linux64GccDPInt32Opt/lib/libcodeStream_aaf28b22cd9f015470c3e7861de51a9679c16c3e.so"
-/home/tariq/Downloads/Test112L-SMG_Xq/dynamicCode/platforms/linux64GccDPInt32Opt/lib/libcodeStream_aaf28b22cd9f015470c3e7861de51a9679c16c3e.so: cannot open shared object file: No such file or directory
+Using #codeStream with "/home/user/Downloads/Test112L-SMG_Xq/dynamicCode/platforms/linux64GccDPInt32Opt/lib/libcodeStream_aaf28b22cd9f015470c3e7861de51a9679c16c3e.so"
+Could not load "/home/user/Downloads/Test112L-SMG_Xq/dynamicCode/platforms/linux64GccDPInt32Opt/lib/libcodeStream_aaf28b22cd9f015470c3e7861de51a9679c16c3e.so"
+/home/user/Downloads/Test112L-SMG_Xq/dynamicCode/platforms/linux64GccDPInt32Opt/lib/libcodeStream_aaf28b22cd9f015470c3e7861de51a9679c16c3e.so: cannot open shared object file: No such file or directory
 Creating new library in "dynamicCode/_aaf28b22cd9f015470c3e7861de51a9679c16c3e/platforms/linux64GccDPInt32Opt/lib/libcodeStream_aaf28b22cd9f015470c3e7861de51a9679c16c3e.so"
-Invoking wmake libso /home/tariq/Downloads/Test112L-SMG_Xq/dynamicCode/_aaf28b22cd9f015470c3e7861de51a9679c16c3e
-wmake libso /home/tariq/Downloads/Test112L-SMG_Xq/dynamicCode/_aaf28b22cd9f015470c3e7861de51a9679c16c3e
+Invoking wmake libso /home/user/Downloads/Test112L-SMG_Xq/dynamicCode/_aaf28b22cd9f015470c3e7861de51a9679c16c3e
+wmake libso /home/user/Downloads/Test112L-SMG_Xq/dynamicCode/_aaf28b22cd9f015470c3e7861de51a9679c16c3e
     ln: ./lnInclude
     dep: codeStreamTemplate.C
     Ctoo: codeStreamTemplate.C
-    link: /home/tariq/Downloads/Test112L-SMG_Xq/dynamicCode/_aaf28b22cd9f015470c3e7861de51a9679c16c3e/../platforms/linux64GccDPInt32Opt/lib/libcodeStream_aaf28b22cd9f015470c3e7861de51a9679c16c3e.so
+    link: /home/user/Downloads/Test112L-SMG_Xq/dynamicCode/_aaf28b22cd9f015470c3e7861de51a9679c16c3e/../platforms/linux64GccDPInt32Opt/lib/libcodeStream_aaf28b22cd9f015470c3e7861de51a9679c16c3e.so
 Reading field sh
 
 Using #codeStream at line 20 in file "0/sh"
-Using #codeStream with "/home/tariq/Downloads/Test112L-SMG_Xq/dynamicCode/platforms/linux64GccDPInt32Opt/lib/libcodeStream_f558f3db0cfa211c14d6a192f16d064c2a5ece45.so"
-Could not load "/home/tariq/Downloads/Test112L-SMG_Xq/dynamicCode/platforms/linux64GccDPInt32Opt/lib/libcodeStream_f558f3db0cfa211c14d6a192f16d064c2a5ece45.so"
-/home/tariq/Downloads/Test112L-SMG_Xq/dynamicCode/platforms/linux64GccDPInt32Opt/lib/libcodeStream_f558f3db0cfa211c14d6a192f16d064c2a5ece45.so: cannot open shared object file: No such file or directory
+Using #codeStream with "/home/user/Downloads/Test112L-SMG_Xq/dynamicCode/platforms/linux64GccDPInt32Opt/lib/libcodeStream_f558f3db0cfa211c14d6a192f16d064c2a5ece45.so"
+Could not load "/home/user/Downloads/Test112L-SMG_Xq/dynamicCode/platforms/linux64GccDPInt32Opt/lib/libcodeStream_f558f3db0cfa211c14d6a192f16d064c2a5ece45.so"
+/home/user/Downloads/Test112L-SMG_Xq/dynamicCode/platforms/linux64GccDPInt32Opt/lib/libcodeStream_f558f3db0cfa211c14d6a192f16d064c2a5ece45.so: cannot open shared object file: No such file or directory
 Creating new library in "dynamicCode/_f558f3db0cfa211c14d6a192f16d064c2a5ece45/platforms/linux64GccDPInt32Opt/lib/libcodeStream_f558f3db0cfa211c14d6a192f16d064c2a5ece45.so"
-Invoking wmake libso /home/tariq/Downloads/Test112L-SMG_Xq/dynamicCode/_f558f3db0cfa211c14d6a192f16d064c2a5ece45
-wmake libso /home/tariq/Downloads/Test112L-SMG_Xq/dynamicCode/_f558f3db0cfa211c14d6a192f16d064c2a5ece45
+Invoking wmake libso /home/user/Downloads/Test112L-SMG_Xq/dynamicCode/_f558f3db0cfa211c14d6a192f16d064c2a5ece45
+wmake libso /home/user/Downloads/Test112L-SMG_Xq/dynamicCode/_f558f3db0cfa211c14d6a192f16d064c2a5ece45
     ln: ./lnInclude
     dep: codeStreamTemplate.C
     Ctoo: codeStreamTemplate.C
-    link: /home/tariq/Downloads/Test112L-SMG_Xq/dynamicCode/_f558f3db0cfa211c14d6a192f16d064c2a5ece45/../platforms/linux64GccDPInt32Opt/lib/libcodeStream_f558f3db0cfa211c14d6a192f16d064c2a5ece45.so
+    link: /home/user/Downloads/Test112L-SMG_Xq/dynamicCode/_f558f3db0cfa211c14d6a192f16d064c2a5ece45/../platforms/linux64GccDPInt32Opt/lib/libcodeStream_f558f3db0cfa211c14d6a192f16d064c2a5ece45.so
 Reading field p_rgh
 
 Reading field U
 
 Using #codeStream at line 20 in file "0/U"
-Using #codeStream with "/home/tariq/Downloads/Test112L-SMG_Xq/dynamicCode/platforms/linux64GccDPInt32Opt/lib/libcodeStream_bc79df0a168e7002385ed5d80b2c16c7bf734522.so"
-Could not load "/home/tariq/Downloads/Test112L-SMG_Xq/dynamicCode/platforms/linux64GccDPInt32Opt/lib/libcodeStream_bc79df0a168e7002385ed5d80b2c16c7bf734522.so"
-/home/tariq/Downloads/Test112L-SMG_Xq/dynamicCode/platforms/linux64GccDPInt32Opt/lib/libcodeStream_bc79df0a168e7002385ed5d80b2c16c7bf734522.so: cannot open shared object file: No such file or directory
+Using #codeStream with "/home/user/Downloads/Test112L-SMG_Xq/dynamicCode/platforms/linux64GccDPInt32Opt/lib/libcodeStream_bc79df0a168e7002385ed5d80b2c16c7bf734522.so"
+Could not load "/home/user/Downloads/Test112L-SMG_Xq/dynamicCode/platforms/linux64GccDPInt32Opt/lib/libcodeStream_bc79df0a168e7002385ed5d80b2c16c7bf734522.so"
+/home/user/Downloads/Test112L-SMG_Xq/dynamicCode/platforms/linux64GccDPInt32Opt/lib/libcodeStream_bc79df0a168e7002385ed5d80b2c16c7bf734522.so: cannot open shared object file: No such file or directory
 Creating new library in "dynamicCode/_bc79df0a168e7002385ed5d80b2c16c7bf734522/platforms/linux64GccDPInt32Opt/lib/libcodeStream_bc79df0a168e7002385ed5d80b2c16c7bf734522.so"
-Invoking wmake libso /home/tariq/Downloads/Test112L-SMG_Xq/dynamicCode/_bc79df0a168e7002385ed5d80b2c16c7bf734522
-wmake libso /home/tariq/Downloads/Test112L-SMG_Xq/dynamicCode/_bc79df0a168e7002385ed5d80b2c16c7bf734522
+Invoking wmake libso /home/user/Downloads/Test112L-SMG_Xq/dynamicCode/_bc79df0a168e7002385ed5d80b2c16c7bf734522
+wmake libso /home/user/Downloads/Test112L-SMG_Xq/dynamicCode/_bc79df0a168e7002385ed5d80b2c16c7bf734522
     ln: ./lnInclude
     dep: codeStreamTemplate.C
     Ctoo: codeStreamTemplate.C
-    link: /home/tariq/Downloads/Test112L-SMG_Xq/dynamicCode/_bc79df0a168e7002385ed5d80b2c16c7bf734522/../platforms/linux64GccDPInt32Opt/lib/libcodeStream_bc79df0a168e7002385ed5d80b2c16c7bf734522.so
+    link: /home/user/Downloads/Test112L-SMG_Xq/dynamicCode/_bc79df0a168e7002385ed5d80b2c16c7bf734522/../platforms/linux64GccDPInt32Opt/lib/libcodeStream_bc79df0a168e7002385ed5d80b2c16c7bf734522.so
 Reading/calculating face flux field phi
 
 Reading transportProperties

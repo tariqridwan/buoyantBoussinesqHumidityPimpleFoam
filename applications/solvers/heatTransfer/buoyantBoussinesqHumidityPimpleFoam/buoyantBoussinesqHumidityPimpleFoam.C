@@ -1,46 +1,38 @@
 /*---------------------------------------------------------------------------*\
-  =========                 |
-  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
-   \\    /   O peration     |
-    \\  /    A nd           | www.openfoam.com
-     \\/     M anipulation  |
+buoyantBoussinesqHumidityPimpleFoam: Implementation of a moisture transport
+                                     solver in OpenFOAM.
 -------------------------------------------------------------------------------
-    Copyright (C) 2011-2017 OpenFOAM Foundation
-    Copyright (C) 2021 OpenCFD Ltd.
+    Copyright (C) 2026 Tariq Ridwan
 -------------------------------------------------------------------------------
 License
-    This file is part of OpenFOAM.
+    This file is part of buoyantBoussinesqHumidityPimpleFoam.
 
-    OpenFOAM is free software: you can redistribute it and/or modify it
-    under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+    buoyantBoussinesqHumidityPimpleFoam is free software: you can redistribute
+    it and/or modify it under the terms of the GNU General Public License as
+    published by the Free Software Foundation, either version 3 of the License,
+    or (at your option) any later version.
 
-    OpenFOAM is distributed in the hope that it will be useful, but WITHOUT
-    ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-    FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
-    for more details.
+    buoyantBoussinesqHumidityPimpleFoam is distributed in the hope that it will
+    be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General
+    Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
+    along with OpenFOAM. If not, see <http://www.gnu.org/licenses/>.
 
 Application
-    buoyantBoussinesqHumidityPimpleFoam (previously: buoyantBoussinesqPimpleFoam in OpenFOAM)
+    buoyantBoussinesqHumidityPimpleFoam
 
 Group
     grpHeatTransferSolvers
 
 Description
-    Transient solver for buoyant, turbulent flow of incompressible fluids,
-    with optional mesh motion and mesh topology changes.
-
+    Transient solver with specific humidity transport for buoyant, turbulent flow
+    of incompressible fluids, with optional mesh motion and mesh topology changes.
+    
     Uses the Boussinesq approximation:
     \f[
         rho_{k} = 1 - beta(T - T_{ref}) - betaSh*(sh - sh_{ref})
-    \f]
-    if specific humidity not considered, then like the buoyantBoussinesqPimpleFoam solver:
-    \f[
-        rho_{k} = 1 - beta(T - T_{ref})
     \f]
 
     where:
@@ -48,15 +40,9 @@ Description
         beta = thermal expansion coefficient [1/K]
         T = temperature [K]
         \f$ T_{ref} \f$ = reference temperature [K]
-    and additionally in the buoyantBoussinesqHumidityPimpleFoam solver:
         betaSh = mass expansion coefficient [dimensionless]
         sh = specific humidity [kg/kg]
         \f$ sh_{ref} \f$ = reference specific humidity [kg/kg]
-
-    Valid when:
-    \f[
-        \frac{beta(T - T_{ref})}{rho_{ref}} << 1
-    \f]
 
 \*---------------------------------------------------------------------------*/
 

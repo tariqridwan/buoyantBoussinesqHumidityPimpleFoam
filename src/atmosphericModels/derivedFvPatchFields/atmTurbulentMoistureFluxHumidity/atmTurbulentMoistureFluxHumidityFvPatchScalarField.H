@@ -1,11 +1,71 @@
 /*---------------------------------------------------------------------------*\
-  =========                 |
-  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
-   \\    /   O peration     |
-    \\  /    A nd           | www.openfoam.com
-     \\/     M anipulation  |
+atmTurbulentMoistureFluxHumidity: Implementation of a moisture flux
+                                  boundary condition in OpenFOAM.
 -------------------------------------------------------------------------------
-    Copyright (C) 2024 OpenFOAM Foundation
+    Copyright (C) 2026 Tariq Ridwan
+-------------------------------------------------------------------------------
+License
+    This file is part of buoyantBoussinesqHumidityPimpleFoam.
+
+    buoyantBoussinesqHumidityPimpleFoam is free software: you can redistribute
+    it and/or modify it under the terms of the GNU General Public License as
+    published by the Free Software Foundation, either version 3 of the License,
+    or (at your option) any later version.
+
+    buoyantBoussinesqHumidityPimpleFoam is distributed in the hope that it will
+    be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General
+    Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with OpenFOAM. If not, see <http://www.gnu.org/licenses/>.
+
+Class
+    Foam::atmTurbulentMoistureFluxHumidityFvPatchScalarField
+
+Group
+    grpAtmWallFunctions
+
+Description
+    This boundary condition provides a fixed moisture constraint on specific
+    humidity (i.e. \c sh) to specify specific humidity gradient through an
+    input moisture source which can be specified as flux [kg/kg·m/s].
+
+Usage
+    Example of the boundary condition specification:
+    \verbatim
+    <patchName>
+    {
+        type            atmTurbulentMoistureFluxHumidity;
+        MoistureSource  flux;
+        gammaEff        gammaEff; // from shEqn.H line 8 of the
+                                  // buoyantBoussinesqHumidityPimpleFoam solver
+        value           uniform 0.00904; // initial guess of specific humidity
+                                         // typically from initial condition
+        MoistureFlux    uniform 1.4435E-04; // Kinematic moisture flux in kg/kg·m/s
+        
+        // Optional (inherited) entries
+        ...
+    }
+    \endverbatim
+
+    where the entries mean:
+    \table
+      Property       | Description                         | Type | Reqd  | Dflt
+      MoistureSource | Moisture source type                | word |  yes  | -
+      gammaEff       | Name of turbulent mass disffusivity field [kg/m/s] <!--
+                                                       --> | word | yes   | -
+      MoistureFlux   | Moisture source value [kg/kg·m/s (flux)] <!--
+                                     --> | PatchFunction1<scalar> | yes | -
+    \endtable
+
+    The inherited entries are elaborated in:
+     - \link fixedGradientFvPatchScalarField.H \endlink
+     - \link PatchFunction1.H \endlink
+
+SourceFiles
+    atmTurbulentMoistureFluxHumidityFvPatchScalarField.C
+    
 \*---------------------------------------------------------------------------*/
 
 #ifndef atmTurbulentMoistureFluxHumidityFvPatchScalarField_H
@@ -35,8 +95,8 @@ class atmTurbulentMoistureFluxHumidityFvPatchScalarField
         //- Effective latent heat scaling factor (rho * Lv)
         scalar Lv0_;
 
-        //- Humidity flux [kg/kg·m/s] or [W/m2] or [kg/m2/s]
-        autoPtr<PatchFunction1<scalar>> HumidityFlux_;
+        //- Humidity flux [kg/kg·m/s]
+        autoPtr<PatchFunction1<scalar>> MoistureFlux_;
 
 
 public:
