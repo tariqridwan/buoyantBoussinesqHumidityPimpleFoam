@@ -1,0 +1,87 @@
+INSTSLLATION STEPS of the buoyantBoussinesqHumidityPimpleFoam solver in OpenFOAM:
+
+1) Clone the repo directly from github by the command:
+        git clone https://github.com/tariqridwan/buoyantBoussinesqHumidityPimpleFoam.git
+
+2) Run OpenFOAM from the terminal, i.e., by the following command, assuming you are using v2406:
+        openfoam2406
+
+3) Create a similar folder structure in your OpenFOAM-user-space for the solver by the command:
+        mkdir -p $WM_PROJECT_USER_DIR/applications/solvers/heatTransfer
+
+and then enter into the directory by:
+        cd $WM_PROJECT_USER_DIR/applications/solvers/heatTransfer
+
+4) Copy the buoyantBoussinesqHumidityPimpleFoam solver's folder (which you cloned/downloaded from github in step 1) into this directory by the command:
+        cp -r /path/to/your/cloned/buoyantBoussinesqHumidityPimpleFoam/applications/solvers/heatTransfer/buoyantBoussinesqHumidityPimpleFoam .
+
+and then go inside the folder by the command:
+        cd buoyantBoussinesqHumidityPimpleFoam
+
+5) Before compiling the solver, clean up any old dependencies first by the command (OPTIONAL if installing for the first time):
+        wclean
+
+6) Compile by the command:
+        wmake
+
+Alternatively, to save the log file while still watching the build progress live in your terminal, use tee:
+        wmake 2>&1 | tee log.wmake
+You can see the log later from log.wmake file as well. This option is better as you can track compilation errors (if any) from the saved log file.
+
+7) If successful, the last line of output will say something like:
+.../buoyantBoussinesqHumidityPimpleFoam (indicating the file was written).
+
+8) Test if the solver is found by the commands:
+        which buoyantBoussinesqHumidityPimpleFoam
+        buoyantBoussinesqHumidityPimpleFoam -help
+The 1st command should return the solver's installation path. If the 2nd command prints the help message, you are ready to use it in your cases!
+
+9) For further confirmation, run the test-cases available at: https://github.com/tariqridwan/buoyantBoussinesqHumidityPimpleFoam/tree/main/TestCases
+
+NOTE 1: set "application     buoyantBoussinesqHumidityPimpleFoam" in system/controlDict file.
+NOTE 2: change the solver-name in the jobScrip.sh file, e.g.: "runParallel buoyantBoussinesqHumidityPimpleFoam", "mpirun -np 64 buoyantBoussinesqHumidityPimpleFoam -parallel".
+
+10) For any future changes in the solver, after saving the changes in the solver files, simply follow steps 5 to 9 again.
+
+
+INSTSLLATION STEPS of the atmTurbulentMoistureFluxHumidity boundary condition (BC) in OpenFOAM:
+
+1) Clone the repo directly from github by the command:
+        git clone https://github.com/tariqridwan/buoyantBoussinesqHumidityPimpleFoam.git
+
+2) Run OpenFOAM from the terminal, i.e., by the following command, assuming you are using v2406:
+        openfoam2406
+
+3) Create a similar folder structure in your OpenFOAM-user-space for the BC by the command:
+        mkdir -p $WM_PROJECT_USER_DIR/src/finiteVolume/fields/fvPatchFields/derived/
+
+and then enter into the directory by:
+        cd $WM_PROJECT_USER_DIR/src/finiteVolume/fields/fvPatchFields/derived/
+
+4) Copy the atmTurbulentMoistureFluxHumidity BC's folder (which you cloned/downloaded from github in step 1) into this directory by the command:
+        cp -r /path/to/your/cloned/buoyantBoussinesqHumidityPimpleFoam/src/atmosphericModels/derivedFvPatchFields/atmTurbulentMoistureFluxHumidity/ .
+
+and then go inside the folder by the command:
+        cd atmTurbulentMoistureFluxHumidity
+
+5) Before compiling the BC, clean up any old dependencies first by the command (OPTIONAL if installing for the first time):
+        wclean
+
+6) Compile by the command:
+        wmake libso
+
+Alternatively, to save the log file while still watching the build progress live in your terminal, use tee:
+        wmake libso 2>&1 | tee log.libso
+You can see the log later from log.wmake file as well. This option is better as you can track compilation errors (if any) from the saved log file.
+
+7) For further confirmation, run the test-cases available at: https://github.com/tariqridwan/buoyantBoussinesqHumidityPimpleFoam/tree/main/TestCases
+
+NOTE 1: set "application     buoyantBoussinesqHumidityPimpleFoam" in system/controlDict file.
+NOTE 2: change the solver-name in the jobScrip.sh file, e.g.: "runParallel buoyantBoussinesqHumidityPimpleFoam", "mpirun -np 64 buoyantBoussinesqHumidityPimpleFoam -parallel".
+NOTE 3: add the following in your system/controlDict file so that the simulation can access the BC library:
+        libs
+        (
+        "libMyAtmosphericModels.so"
+        );
+
+8) For any future changes in the BC, after saving the changes in the BC files, simply follow steps 5 to 7 again.
