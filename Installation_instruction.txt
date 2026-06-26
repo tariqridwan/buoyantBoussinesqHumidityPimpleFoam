@@ -53,10 +53,10 @@ INSTSLLATION STEPS of the atmTurbulentMoistureFluxHumidity boundary condition (B
         openfoam2406
 
 3) Create a similar folder structure in your OpenFOAM-user-space for the BC by the command:
-        mkdir -p $WM_PROJECT_USER_DIR/src/finiteVolume/fields/fvPatchFields/derived/
+        mkdir -p $WM_PROJECT_USER_DIR/src/atmosphericModels/derivedFvPatchFields/
 
 and then enter into the directory by:
-        cd $WM_PROJECT_USER_DIR/src/finiteVolume/fields/fvPatchFields/derived/
+        cd $WM_PROJECT_USER_DIR/src/atmosphericModels/derivedFvPatchFields/
 
 4) Copy the atmTurbulentMoistureFluxHumidity BC's folder (which you cloned/downloaded from github in step 1) into this directory by the command:
         cp -r /path/to/your/cloned/buoyantBoussinesqHumidityPimpleFoam/src/atmosphericModels/derivedFvPatchFields/atmTurbulentMoistureFluxHumidity/ .
